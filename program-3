@@ -1,0 +1,79 @@
+//program-3:: frequency of a particular element in an array
+
+method-1
+------------
+
+import java.io.*;
+import java.util.*;
+public class Main
+{
+    public static int frequency_of_k(ArrayList<Integer> array,int size_of_array,int k)
+    {
+        int frequency=0;
+        for(int index=0;index<size_of_array;index++) 
+        {
+            if(array.get(index)==k) frequency++;
+        }
+        return frequency;
+    }
+     public static void main(String[] args) 
+      {
+	Scanner scanner=new Scanner(System.in);
+	ArrayList<Integer> array=new ArrayList<>();
+	int size_of_array,k,index;
+	size_of_array=scanner.nextInt();
+	for(index=0;index<size_of_array;index++) array.add(scanner.nextInt());
+	k=scanner.nextInt();
+	int frequency=frequency_of_k(array,size_of_array,k);
+	System.out.println(frequency);
+       }
+}
+
+
+method-2
+------------
+
+import java.io.*;
+import java.util.*;
+public class Main
+{
+       public static void main(String[] args) 
+         {
+	Scanner scanner=new Scanner(System.in);
+	Map<Integer,Integer> map=new HashMap<Integer,Integer>();
+	int size,key,index,value=1;
+	size=scanner.nextInt();
+	for(index=0;index<size;index++)
+	{
+	    key=scanner.nextInt();
+	    if(map.containsKey(key))
+	    {
+	        value=map.get(key);
+	        value++;
+	    }
+	    map.put(key,value);
+	}
+	int k=scanner.nextInt();
+	System.out.println(map.get(k));
+         }
+}
+
+
+test cases:::
+--------------
+1) size of array=7
+    array=[-1 5 5 -1 2 -1 -1]
+     k=-1
+     output=4
+2)size of array=5
+    array=[1 2 3 4 5]
+     k=6
+     output=0  ["null" while using hashmap] 
+3)size of array=5
+    array=[1 1 1 1 1]
+     k=1
+     output=5
+4)size of array=5
+    array=[1 2 3 4 5]
+     k=1
+     output=1
