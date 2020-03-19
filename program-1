@@ -1,0 +1,53 @@
+//program-1:: print all valid paranthesis.
+
+import java.io.*;
+import java.util.*;
+public class Main
+{
+   static void ValidParenthesis(char paran[], int pos, int num, int open, int close) 
+    { 
+          if(close == num) 
+          { 
+                for(int index=0;index<paran.length;index++) 
+                        System.out.print(paran[index]); 
+  	  System.out.println(); 
+	  return; 
+           } 
+          else
+          { 
+	if(open > close) 
+	{ 
+	      paran[pos] = '}'; 
+	      ValidParenthesis(paran, pos+1, num, open, close+1); 
+	} 
+	if(open < num) 
+	{ 
+	    paran[pos] = '{'; 
+	    ValidParenthesis(paran, pos+1, num, open+1, close); 
+               } 
+           } 
+     } 
+    public static void main (String[] args) 
+    { 
+         Scanner scanner=new Scanner(System.in);
+         int num = scanner.nextInt(); 
+         char[] paran = new char[2*num]; 
+         ValidParenthesis(paran, 0, num, 0, 0); 
+     } 
+} 
+
+test cases:::
+---------------
+1) n=0
+    output:: //prints nothing
+2) n=1
+    output::{}
+3) n=2
+    output::{}{}                                                                                                                                           
+               {{}}
+4) n=3
+    output::{}{}{}                                                                                                                                         
+               {}{{}}                                                                                                                                         
+               {{}}{}                                                                                                                                         
+               {{}{}}                                                                                                                                         
+               {{{}}}   

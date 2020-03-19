@@ -1,0 +1,80 @@
+//program-5:: minimum absolute difference from 3 different arrays of different sizes.
+
+import java.io.*;
+import java.util.*;
+public class Main
+{
+  static int min_absolute_dif(int a,int b,int c)
+  {
+      int maximum=c>(a>b?a:b)?c:((a>b)?a:b);
+      int minimum=c<(a<b?a:b)?c:((a<b)?a:b);
+      return Math.abs(minimum-maximum);
+  }
+  public static void main (String[]args)
+  {
+    Scanner scanner=new Scanner(System.in);
+    ArrayList<Integer> array1=new ArrayList<>();
+    ArrayList<Integer> array2=new ArrayList<>();
+    ArrayList<Integer> array3=new ArrayList<>();
+    ArrayList<Integer> min_diff=new ArrayList<>();
+    int size1,size2,size3,i,j,k,min=Integer.MAX_VALUE,diff;
+    size1=scanner.nextInt();
+    for(i=0;i<size1;i++) array1.add(scanner.nextInt());
+    size2=scanner.nextInt();
+    for(i=0;i<size2;i++) array2.add(scanner.nextInt());
+    size3=scanner.nextInt();
+    for(i=0;i<size3;i++) array3.add(scanner.nextInt());
+    for(i=0;i<size1;i++)
+    {
+        for(j=0;j<size2;j++)
+        {
+            for(k=0;k<size3;k++)
+            {
+                int a,b,c;
+                a=array1.get(i);
+                b=array2.get(j);
+                c=array3.get(k);
+                diff=min_absolute_dif(a,b,c);
+                min_diff.add(diff);
+                min=Math.min(min,diff);
+            }
+        }
+    }
+    System.out.println(Collections.min(min_diff));
+    System.out.println(min_diff);
+  }
+}
+
+test cases::
+--------------
+1)                  sizes      array elements
+       array1       5          [1 4 5 8 10]
+       array2       3          [6 9 15]
+       array3       4          [2 3 6 6]
+       min_difference array=[[5, 5, 5, 5, 8, 8, 8, 8, 14, 14, 14, 14, 4, 3, 2, 2, 7, 6, 5, 5, 13, 12, 11, 11, 4, 3, 1, 1, 7,
+                                         6, 4, 4, 13, 12, 10, 10, 6, 5, 2, 2, 7, 6, 3, 3, 13, 12, 9, 9, 8, 7, 4, 4, 8, 7, 4, 4, 13, 12, 9, 9]]
+       min_difference=1
+        
+2)                 sizes      array elements
+       array1       2          [1 2]
+       array2       3          [1 2 3]
+       array3       1          [4]
+       min_difference array=[3 3 3 3 2 2]
+       min_difference=2
+3)                sizes      array elements
+       array1       1          [1]
+       array2       1          [2]
+       array3       1          [3]
+      min_difference array=[2]
+      min_difference=[2]
+4)               sizes      array elements
+       array1       4          [5 8 10 15]
+       array2       5          [6 9 15 78 89]
+       array3       7          [2 3 6 6 8 8 10]
+      min_difference array=[4, 3, 1, 1, 3, 3, 5, 7, 6, 4, 4, 4, 4, 5, 13, 12, 10, 10, 10, 10, 10, 76, 75, 73, 73, 73, 73,
+                                       73, 87, 86, 84, 84, 84, 84, 84, 6, 5, 2, 2, 2, 2, 4, 7, 6, 3, 3, 1, 1, 2, 13, 12, 9, 9, 7, 7, 
+                                       7, 76, 75, 72, 72, 70, 70, 70, 87, 86, 83, 83, 81, 81, 81, 8, 7, 4, 4, 4, 4, 4, 8, 7, 4, 4, 
+                                       2, 2, 1, 13, 12, 9, 9, 7, 7, 5, 76, 75, 72, 72, 70, 70, 68, 87, 86, 83, 83, 81, 81, 79, 13, 
+                                       12, 9, 9, 9, 9, 9, 13, 12, 9, 9, 7, 7, 6, 13, 12, 9, 9, 7, 7, 5, 76, 75, 72, 72, 70, 70, 68, 
+                                       87, 86, 83, 83, 81, 81, 79]
+      min_difference=[1]
