@@ -1,0 +1,39 @@
+//Program-3:: frequency of an element using binary search.
+
+import java.io.*;
+import java.util.*;
+public class Main
+{
+    static int binarySearch(ArrayList<Integer> array, int left, int right, int k) 
+    { 
+	if (right<left)  return -1; 
+    int mid = (left+right)/2; 
+	if (array.get(mid)==k) return mid; 
+	if (array.get(mid)>k) return binarySearch(array,left,mid-1,k); 
+	return binarySearch(array,mid+1,right,k); 
+    } 
+    static int Frequency(ArrayList<Integer> array, int size, int k) 
+    { 
+         int index=binarySearch(array,0,size-1,k); 
+         if (index==-1)   return 0; 
+         int count=1; 
+         int left=index-1; 
+         while (left>=0 && array.get(left) == k) 
+	 {count++; left--; }
+         int right = index + 1; 
+         while (right < size && array.get(right) == k) 
+	{count++; right++; }
+          return count; 
+    } 
+    public static void main(String args[]) 
+    { 
+          Scanner scanner=new Scanner(System.in);
+          int size,k,index;
+          size=scanner.nextInt();
+          ArrayList<Integer> array=new ArrayList<>();
+          for(index=0;index<size;index++) array.add(scanner.nextInt());
+          k=scanner.nextInt();
+          Collections.sort(array);
+          System.out.println(Frequency(array,size,k)); 
+   }
+}
